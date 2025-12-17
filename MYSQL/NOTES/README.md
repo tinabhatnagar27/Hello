@@ -471,14 +471,6 @@ graph LR
     A -->|matching student_id| B
 ```
 
-```
-Students        Courses
-+------+        +------+
-| 1    |  ----> | 1    |
-| 2    |  ----> | 2    |
-+------+        +------+
- Matching records only
-```
 
 ### Query
 
@@ -512,15 +504,6 @@ graph LR
     S3 --> N
 ```
 
-```
-Students        Courses
-+------+        +------+
-| 1    |  ----> | 1    |
-| 2    |  ----> | 2    |
-| 3    |  ----> | NULL |
-+------+        +------+
-```
-
 ### Query
 
 ```sql
@@ -538,13 +521,20 @@ Returns all rows from the right table and matching rows from the left table.
 
 ### Diagram
 
-```
-Students        Courses
-+------+        +------+
-| 1    |  <---- | 1    |
-| 2    |  <---- | 2    |
-| NULL |  <---- | ?    |
-+------+        +------+
+```mermaid
+graph LR
+    S1[Student 1]
+    S2[Student 2]
+    N[NULL]
+
+    C1[Course 1]
+    C2[Course 2]
+    C3[Course ?]
+
+    C1 --> S1
+    C2 --> S2
+    C3 --> N
+
 ```
 
 ### Query
@@ -609,16 +599,6 @@ WHERE A.student_id <> B.student_id;
 ```
 
 ---
-
-## Interview One-Line Answer
-
-**JOIN is used to combine rows from two or more tables based on a related column between them.**
-
----
-
-## Summary
-
-JOINs are essential in relational databases to fetch related data from multiple tables efficiently and correctly.
 
 ##  Best Practice
 
