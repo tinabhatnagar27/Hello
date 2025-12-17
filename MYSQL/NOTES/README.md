@@ -552,6 +552,25 @@ ON students.student_id = courses.student_id;
 
 MySQL does not support FULL JOIN directly. It can be simulated using UNION.
 
+### Daigram 
+
+```mermaid
+graph LR
+    S1[Student 1]
+    S2[Student 2]
+    S3[Student 3]
+
+    C1[Course 1]
+    C2[Course 2]
+    C3[Course 3]
+
+    S1 --> C1
+    S2 --> C2
+    S3 --> N1[NULL]
+
+    C3 --> N2[NULL]
+```
+
 ### Query
 
 ```sql
@@ -572,9 +591,22 @@ Returns the Cartesian product (every row with every row).
 
 ### Diagram
 
+```mermaid
+graph LR
+    S1[Student 1]
+    S2[Student 2]
+
+    C1[Course 1]
+    C2[Course 2]
+
+    S1 --> C1
+    S1 --> C2
+    S2 --> C1
+    S2 --> C2
 ```
+
 3 Students × 2 Courses = 6 Rows
-```
+
 
 ### Query
 
@@ -589,6 +621,19 @@ CROSS JOIN courses;
 ## SELF JOIN
 
 A table is joined with itself.
+
+### Daigram
+
+```mermaid
+graph LR
+    E1[Employee 1]
+    E2[Employee 2]
+    E3[Manager]
+
+    E1 -->|reports to| E3
+    E2 -->|reports to| E3
+```
+Employee → Manager relationship (same table)
 
 ### Query
 
