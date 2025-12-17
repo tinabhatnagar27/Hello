@@ -1,6 +1,6 @@
 # MySQL Basics 
 
-This document covers **basic MySQL concepts** including Database, Query, Table creation, and common SQL operations.
+This document covers **basic MySQL concepts** including Database, Query, Table creation, joins and common SQL operations.
 
 ---
 
@@ -54,10 +54,9 @@ SELECT * FROM students;
 
 ---
 
-# MySQL Data Types
----
+## MySQL Data Types
 
-## 1. INT
+### 1. INT
 
 * Used to store **whole numbers** (integers).
 * Commonly used for IDs, age, count, etc.
@@ -68,9 +67,7 @@ SELECT * FROM students;
 age INT
 ```
 
----
-
-## 2. VARCHAR
+### 2. VARCHAR
 
 * Used to store **text or string values**.
 * Stores variable-length characters, which saves memory.
@@ -82,9 +79,7 @@ age INT
 name VARCHAR(50)
 ```
 
----
-
-## 3. ENUM
+### 3. ENUM
 
 * Used when a column should have **only one value from a fixed list**.
 * Helps maintain data consistency.
@@ -95,9 +90,7 @@ name VARCHAR(50)
 gender ENUM('Male', 'Female', 'Other')
 ```
 
----
-
-## 4. DATE
+### 4. DATE
 
 * Used to store **date only** (without time).
 * Format: `YYYY-MM-DD`
@@ -108,9 +101,7 @@ gender ENUM('Male', 'Female', 'Other')
 dob DATE
 ```
 
----
-
-## 5. TIMESTAMP
+### 5. TIMESTAMP
 
 * Used to store **date and time**.
 * Automatically stores the current date and time when a record is created or updated.
@@ -121,9 +112,7 @@ dob DATE
 created_at TIMESTAMP
 ```
 
----
-
-## 6. BOOLEAN
+### 6. BOOLEAN
 
 * Used to store **true or false values**.
 * Internally stored as `TINYINT` (1 = true, 0 = false).
@@ -134,7 +123,7 @@ created_at TIMESTAMP
 is_active BOOLEAN
 ```
 
-## Example Table Using All Data Types
+#### Example Table Using All Data Types
 
 ```sql
 CREATE TABLE users (
@@ -148,19 +137,12 @@ CREATE TABLE users (
 ```
 ---
 
-# MySQL Constraints
-
-This README explains **MySQL constraints** in simple language. Constraints are rules applied to table columns to ensure **data accuracy, integrity, and consistency**. These notes are suitable for exams, assignments, and beginners.
-
----
-
 ## What are Constraints?
 
 Constraints are rules that restrict the type of data that can be stored in a database table. They help prevent invalid data from being inserted.
 
----
 
-## Constraints 
+## Different types Constraints 
 
 | Constraint     | Description                                                 | Key Points                                          | Example                               |
 | -------------- | ----------------------------------------------------------- | --------------------------------------------------- | ------------------------------------- |
@@ -170,9 +152,8 @@ Constraints are rules that restrict the type of data that can be stored in a dat
 | UNIQUE         | Ensures all values in a column are unique                   | No duplicate values; NULL allowed once              | `email VARCHAR(100) UNIQUE`           |
 | DEFAULT        | Assigns a default value if none is provided                 | Used when value is missing                          | `status VARCHAR(20) DEFAULT 'Active'` |
 
----
 
-## Example Table Using Constraints
+### Example Table Using Constraints
 
 ```sql
 CREATE TABLE users (
@@ -203,7 +184,6 @@ DROP DATABASE college;
 ```sql
 USE college;
 ```
----
 
 ###  Create Table
 
@@ -217,7 +197,6 @@ CREATE TABLE students (
 );
 ```
 
----
 
 ### Insert Data
 
@@ -226,7 +205,6 @@ INSERT INTO students (name, age, course, marks)
 VALUES ('Tina', 22, 'MCA', 85);
 ```
 
----
 
 ### Read Data (SELECT)
 
@@ -234,7 +212,6 @@ VALUES ('Tina', 22, 'MCA', 85);
 SELECT * FROM students;
 ```
 
----
 
 ### Update Data
 
@@ -244,7 +221,6 @@ SET marks = 90
 WHERE name = 'Tina';
 ```
 
----
 
 ### Delete Data
 
@@ -253,8 +229,6 @@ DELETE FROM students
 WHERE id = 1;
 ```
 
----
-
 ## Useful MySQL Commands
 
 ```sql
@@ -262,7 +236,6 @@ SHOW DATABASES;
 SHOW TABLES;
 DESCRIBE students;
 ```
-
 ---
 
 ##  CRUD Operations
@@ -298,7 +271,7 @@ SELECT * FROM students;
 
 ---
 
-# Functions
+## Functions
 
 
 | Category                | Function     | Purpose                | Example                       | Result              |
@@ -325,14 +298,12 @@ SELECT * FROM students;
 |                         | `IFNULL()`   | Replace NULL value     | `IFNULL(marks,0)`             | 0                   |
 |                         | `COALESCE()` | First non-null value   | `COALESCE(m1,m2,0)`           | 70                  |
 
----
-# MySQL Primary Key
+
+## MySQL Primary Key
 
 ## What is a Primary Key?
 
 A **Primary Key** is a column or a combination of columns in a table that **uniquely identifies each record**.
-
-### Key Points:
 
 1. **Unique**: No two rows can have the same primary key value.
 2. **Not NULL**: Primary key columns cannot have NULL values.
@@ -341,7 +312,7 @@ A **Primary Key** is a column or a combination of columns in a table that **uniq
 
 ---
 
-## Example 1: Single Column Primary Key
+### Example 1: Single Column Primary Key
 
 ```sql
 CREATE TABLE students (
@@ -354,9 +325,8 @@ CREATE TABLE students (
 * `id` is the primary key.
 * Ensures **unique and not null** values.
 
----
 
-## Example 2: Composite Primary Key
+### Example 2: Composite Primary Key
 
 ```sql
 CREATE TABLE enrollment (
@@ -369,7 +339,6 @@ CREATE TABLE enrollment (
 * Combination of `student_id` and `course_id` is unique.
 * Prevents duplicate enrollment records.
 
----
 
 ## Why Primary Key is Important
 
@@ -377,7 +346,6 @@ CREATE TABLE enrollment (
 * Used in **relationships** with Foreign Keys.
 * Helps in **faster searching** and indexing.
 
----
 
 ## Features
 
@@ -389,7 +357,7 @@ CREATE TABLE enrollment (
 | Composite | Can include multiple columns |
 
 ---
-# MySQL Foreign Key
+## MySQL Foreign Key
 
 ## What is a Foreign Key?
 
@@ -400,7 +368,6 @@ A **Foreign Key (FK)** is a column or set of columns in one table that **refers 
 3. **Can Allow NULLs**: If the relationship is optional, FK column can be NULL.
 4. **Supports Cascading**: Can define actions on `UPDATE` or `DELETE` (CASCADE, SET NULL, RESTRICT).
 
----
 
 ## Example
 
@@ -427,7 +394,6 @@ CREATE TABLE enrollment (
 * `student_id` in `enrollment` is the **foreign key**.
 * Ensures only valid `student_id` from `students` can be inserted.
 
----
 
 ## Cascading Example
 
@@ -458,10 +424,9 @@ FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
 
 ---
 
-# MySQL JOINs
+## MySQL JOINs
 
 A **JOIN** is used to combine rows from two or more tables based on a **related column** .
----
 
 ## Example Tables
 
@@ -480,7 +445,6 @@ A **JOIN** is used to combine rows from two or more tables based on a **related 
 | 101       | 1          | MySQL  |
 | 102       | 2          | Java   |
 
----
 
 ## Types of JOINs in MySQL
 
@@ -493,7 +457,6 @@ A **JOIN** is used to combine rows from two or more tables based on a **related 
 | CROSS JOIN | Every row of one table with every row of another table      |
 | SELF JOIN  | A table joined with itself                                  |
 
----
 
 ## INNER JOIN
 
@@ -514,7 +477,7 @@ Students        Courses
 | 1    |  ----> | 1    |
 | 2    |  ----> | 2    |
 +------+        +------+
-   ✔ Matching records only
+ Matching records only
 ```
 
 ### Query
@@ -533,6 +496,21 @@ ON students.student_id = courses.student_id;
 Returns all rows from the left table and matching rows from the right table.
 
 ### Diagram
+
+```mermaid
+graph LR
+    S1[Student 1]
+    S2[Student 2]
+    S3[Student 3]
+
+    C1[Course 1]
+    C2[Course 2]
+    N[NULL]
+
+    S1 --> C1
+    S2 --> C2
+    S3 --> N
+```
 
 ```
 Students        Courses
