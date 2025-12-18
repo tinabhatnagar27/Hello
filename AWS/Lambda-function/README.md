@@ -44,6 +44,39 @@ It also supports **custom runtimes** using Docker container images or Amazon Lin
 
 ---
 
+## Event-Driven Execution
+
+### What is Event-Driven Execution?
+
+Event-driven execution means that code runs **only when an event happens**, not continuously.
+
+An **event** can be:
+
+* File upload (Amazon S3)
+* API request
+* Message arrival (SQS / SNS)
+* Database change
+* Scheduled time (cron job)
+
+**No event = no execution**
+
+## Event-Driven Execution in AWS Lambda
+
+* Lambda functions **do not run all the time**
+* They run **only when an event triggers them**
+
+### Execution Flow
+
+```
+Event happens
+   ↓
+AWS service triggers Lambda
+   ↓
+Lambda executes code
+   ↓
+Execution ends
+```
+
 ## AWS Lambda Triggers
 
 AWS Lambda functions can be triggered by:
@@ -54,7 +87,6 @@ AWS Lambda functions can be triggered by:
 * Amazon SQS / SNS (message-based triggers)
 * DynamoDB Streams (data change events)
 * Amazon Cognito (authentication events)
-
 ---
 
 ## AWS Lambda Limitations
@@ -100,7 +132,6 @@ While AWS Lambda is powerful, it has some limitations:
 * Enable AWS X-Ray for tracing
 * Configure alarms for failures and errors
 
+
 ---
-
-
 
