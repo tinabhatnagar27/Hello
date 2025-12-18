@@ -105,7 +105,7 @@ AWS Lambda functions can be triggered by:
 
 ## Use Cases of Lambda
 
-| **Use Case**                | **Example / Explanation**                                                  | **Why Useful**                                 |
+| **Use Case**                | ** Explanation**                                                          | **Why Useful**                                  |
 | --------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------- |
 | **File Processing**         | Image upload to S3 → Lambda automatically resizes/compresses it            | Automates content processing for websites/apps |
 | **Web Backend / API**       | Frontend calls API → Lambda fetches data from DynamoDB/RDS → responds      | Serverless APIs, less cost and maintenance     |
