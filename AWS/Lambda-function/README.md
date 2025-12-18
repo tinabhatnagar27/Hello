@@ -127,7 +127,7 @@ AWS Lambda functions can be triggered by:
 | Flexible | Supports multiple languages: Python, Node.js, Java, Go, etc. |
 
 
-## **Cons (Limitations)**
+## **Cons 
 
 | **Limitation** | **Explanation** |
 |----------------|-----------------|
