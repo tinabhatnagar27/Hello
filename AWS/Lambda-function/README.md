@@ -91,7 +91,6 @@ AWS Lambda functions can be triggered by:
 
 ## AWS Lambda Limitations
 
-While AWS Lambda is powerful, it has some limitations:
 
 | Limitation             | Description                             |
 | ---------------------- | --------------------------------------- |
@@ -165,7 +164,6 @@ While AWS Lambda is powerful, it has some limitations:
 ### Monitoring & Logging
 
 * Use Amazon CloudWatch for logs
-* Enable AWS X-Ray for tracing
 * Configure alarms for failures and errors
 
 
