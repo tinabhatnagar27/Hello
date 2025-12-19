@@ -168,4 +168,7 @@ AWS Lambda functions can be triggered by:
 
 
 ---
+##  Lambda Resources
+
+➡️ [Download File from Google Drive](https://drive.google.com/file/d/1MhZ6RguGRGzPeki4pWVfhI3SpgmCPGB4/view?usp=drivesdk)
 
