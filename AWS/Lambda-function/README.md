@@ -159,6 +159,147 @@ AWS Lambda functions can be triggered by:
 
 
 ---
+# S3 to S3 File Copy using AWS Lambda (Event-Based)
+
+## Overview
+
+This project demonstrates how to create an **event-driven AWS Lambda function** that automatically copies files from one S3 bucket (source) to another S3 bucket (destination).
+
+Whenever a file is uploaded to the **source S3 bucket**, the Lambda function is triggered automatically. The function reads the file name from the S3 event and uploads the same file to the destination bucket using `boto3`.
+
+---
+
+## Architecture Flow
+
+1. A file is uploaded to the **source S3 bucket**
+2. S3 generates an **ObjectCreated (PUT) event**
+3. The event triggers the **AWS Lambda function**
+4. Lambda reads the file name from the event
+5. Lambda copies the file to the **destination S3 bucket**
+
+```
+S3 (Source Bucket)
+        ↓
+   Lambda Function
+        ↓
+S3 (Destination Bucket)
+```
+
+---
+
+## Prerequisites
+
+* AWS Account
+* Two S3 buckets created:
+
+  * Source Bucket (example: `bucket-source-2720`)
+  * Destination Bucket (example: `bucket-dest-8475`)
+* AWS Lambda function with Python runtime
+* Basic understanding of AWS S3 and Lambda
+
+---
+
+## Step 1: Create the Lambda Function
+
+1. Go to **AWS Console → Lambda**
+2. Click **Create function**
+3. Choose **Author from scratch**
+4. Runtime: **Python 3.x**
+5. Create the function
+
+---
+
+## Step 2: Configure IAM Permissions
+
+Attach the following permissions to the Lambda execution role:
+
+* Read objects from the source bucket
+* Write objects to the destination bucket
+
+Example permissions:
+
+* `s3:GetObject` on source bucket
+* `s3:PutObject` on destination bucket
+
+---
+
+## Step 3: Add the Lambda Code
+
+Paste the following code into the Lambda function and deploy it:
+
+```python
+import boto3
+import urllib.parse
+
+s3 = boto3.client('s3')
+
+DEST_BUCKET = "bucket-dest-8475"
+
+def lambda_handler(event, context):
+
+    # Get source bucket name from S3 event
+    source_bucket = event['Records'][0]['s3']['bucket']['name']
+
+    # Get file name (object key) from S3 event
+    object_key = urllib.parse.unquote_plus(
+        event['Records'][0]['s3']['object']['key']
+    )
+
+    # Read file from source bucket
+    response = s3.get_object(
+        Bucket=source_bucket,
+        Key=object_key
+    )
+
+    file_data = response['Body'].read()
+    content_type = response.get('ContentType', 'binary/octet-stream')
+
+    # Upload file to destination bucket
+    s3.put_object(
+        Bucket=DEST_BUCKET,
+        Key=object_key,
+        Body=file_data,
+        ContentType=content_type
+    )
+
+    return {
+        "statusCode": 200,
+        "message": "File copied successfully"
+    }
+```
+
+---
+
+## Step 4: Configure S3 Event Trigger
+
+1. Open the **source S3 bucket**
+2. Go to **Properties → Event notifications**
+3. Create a new event notification
+4. Event type: **Object Created (PUT)**
+5. Destination: **Lambda function**
+6. Select your Lambda function
+7. Save the configuration
+
+---
+
+## Step 5: Testing the Setup
+
+1. Upload any file to the source bucket
+2. The Lambda function will trigger automatically
+3. Check the destination bucket
+4. The same file will appear in the destination bucket
+
+---
+
+## Use Case
+
+* Data replication between buckets
+* File preprocessing pipelines
+* Backup automation
+* Event-driven data engineering workflows
+
+---
+
 ##  Lambda Resources
 
 ➡️ [Download File from Google Drive](https://drive.google.com/file/d/1MhZ6RguGRGzPeki4pWVfhI3SpgmCPGB4/view?usp=drivesdk)
