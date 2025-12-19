@@ -18,15 +18,6 @@ AWS Lambda is widely used because it:
 * Supports event-driven architecture
 * Integrates easily with other AWS services
 
-### Common Use Cases
-
-* Backend APIs
-* ETL (Extract, Transform, Load) jobs
-* Automation tasks
-* Scheduled (cron) jobs
-* Event-driven applications
-* Microservices
-
 ---
 
 ## AWS Lambda Language Support
