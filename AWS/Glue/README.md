@@ -67,8 +67,7 @@ flowchart TD
 ---
 ## AWS Glue Architecture Diagram
 
-![AWS Glue ETL Workflow](<img width="997" height="584" alt="image" src="https://github.com/user-attachments/assets/2d793090-a152-4f20-a8d4-5fec2c01f461" />
-)
+![AWS Glue ETL Workflow](https://media.geeksforgeeks.org/wp-content/uploads/20230213160340/AWS-Glue.png)
 
 ---
 
