@@ -69,6 +69,14 @@ flowchart TD
 
 ![AWS Glue ETL Workflow](https://media.geeksforgeeks.org/wp-content/uploads/20230213160340/AWS-Glue.png)
 
+#### Description
+
+- Data is collected from multiple data sources such as Amazon S3, RDS, or other databases.
+- A Glue Crawler scans the data and automatically detects the schema.
+- The detected metadata is stored in the AWS Glue Data Catalog.
+- Glue Jobs use this metadata to extract, transform, and clean the data using ETL scripts.
+- Jobs can be triggered manually, on a schedule, or via events using the AWS Management Console.
+- Finally, the transformed data is loaded into target systems such as Amazon S3, Redshift, or Athena for analytics.
 ---
 
 ## Advantages
