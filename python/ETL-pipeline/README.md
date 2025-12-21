@@ -33,31 +33,39 @@ The input dataset is `large-dataset.csv` with the following columns:
 
 ## ETL Steps 
 
+### 1️⃣ Import Libraries
 ```python
-# 1️⃣ Import Libraries
 import pandas as pd
 import numpy as np
+```
 
-# 2️⃣ Extract - Load CSV
+### 2️⃣ Extract - Load CSV
+```python
 df = pd.read_csv("large-dataset.csv")
 print("Original Data Loaded")
 print(df.head())
+```
 
-# 3️⃣ Transform Data
+### 3️⃣ Transform Data
 
-# 3.1 Convert DateJoined to datetime
+#### 3.1 Convert DateJoined to datetime
+```python
 df["DateJoined"] = pd.to_datetime(df["DateJoined"])
 print("\n DateJoined converted to datetime")
 print(df["DateJoined"].head())
+```
 
-# 3.2 Uppercase categorical columns
+#### 3.2 Uppercase categorical columns
+```python
 df["Name"] = df["Name"].str.upper()
 df["Country"] = df["Country"].str.upper()
 df["Company"] = df["Company"].str.upper()
 print("\n Name, Country, Company converted to UPPERCASE")
 print(df[["Name", "Country", "Company"]].head())
+```
 
-# 3.3 Handle missing values
+#### 3.3 Handle missing values
+```python
 df["Salary"] = df["Salary"].fillna(0)
 df["Age"] = df["Age"].fillna(0)
 df["Name"] = df["Name"].fillna("UNKNOWN")
@@ -69,26 +77,34 @@ df["Address"] = df["Address"].fillna("UNKNOWN")
 print("\n Missing values handled")
 print(df.head())
 print("\nRemaining NaNs per column:\n", df.isnull().sum())
+```
 
-# 3.4 Add calculated column
+#### 3.4 Add calculated column
+```python
 df["SalaryPerYear"] = df["Salary"] / df["Age"]
 print("\n Calculated column SalaryPerYear added")
 print(df[["Salary", "Age", "SalaryPerYear"]].head())
+```
 
-# 3.5 Filter / Subset example
+#### 3.5 Filter / Subset example
+```python
 country1_df = df[df["Country"] == "COUNTRY_1"]
 print("\n Filtered records for COUNTRY_1")
 print(country1_df.head())
+```
 
-# 3.6 Aggregate / Group by
+#### 3.6 Aggregate / Group by
+```python
 country_salary = df.groupby("Country")["Salary"].sum().reset_index()
 company_salary_avg = df.groupby("Company")["Salary"].mean().reset_index()
 print("\n Aggregated salary by Country")
 print(country_salary.head())
 print("\n Average salary by Company")
 print(company_salary_avg.head())
+```
 
-# 4️⃣ Load - Save Transformed Data
+### 4️⃣ Load - Save Transformed Data
+```python
 df.to_csv("processed_large_dataset.csv", index=False)
 print("\n Full transformed data saved as processed_large_dataset.csv")
 
@@ -97,13 +113,16 @@ print(" Country salary summary saved as country_salary_summary.csv")
 
 company_salary_avg.to_csv("company_salary_avg.csv", index=False)
 print(" Company average salary saved as company_salary_avg.csv")
+```
 
-# 5️⃣ Quick Analysis Examples
+### 5️⃣ Quick Analysis Examples
+```python
 max_salary = df.loc[df["Salary"].idxmax()]
 print("\n Max Salary Record:\n", max_salary)
 
 print("\nAverage Salary:", df["Salary"].mean())
 print("Total Salary:", df["Salary"].sum())
+```
 
 ---
 ## Project Structure
@@ -115,9 +134,8 @@ graph TD
     A --> D[processed_large_dataset.csv]
     A --> E[country_salary_summary.csv]
     A --> F[company_salary_avg.csv]
+```
 
-
----
 
 ## Tools & Libraries
 
