@@ -113,3 +113,8 @@ flowchart TD
 
 ---
 
+## AWS Glue Reference Video  
+  Click here to watch the AWS Glue reference video:  
+[Watch Video](https://drive.google.com/file/d/1ZH45gzT4c9A1Yj4RoXF4ouEzcnx2CaG-/view?usp=drivesdk)
+
+
