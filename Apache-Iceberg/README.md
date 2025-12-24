@@ -119,7 +119,7 @@ Partition types:
 
 ---
 
-## Apache Iceberg Architecture (Simple)
+## Apache Iceberg Architecture 
 
 ### 1️. Catalog Layer
 
