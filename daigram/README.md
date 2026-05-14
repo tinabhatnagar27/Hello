@@ -23,3 +23,17 @@ flowchart TD
 
     K --> L[Logs Result]
 ```
+```mermaid
+flowchart TD
+
+
+ G[Grafana UI] --> H[Loki Datasource]
+
+    H --> I[Loki Query Frontend]
+
+    I --> J[Loki Querier]
+
+    J --> K[Ingester + MinIO Store]
+
+    K --> L[Logs Result]
+```
