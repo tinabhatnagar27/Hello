@@ -11,17 +11,6 @@ flowchart TD
 
     E --> F[MinIO Object Storage]
 
-    %% Query Flow
-
-    G[Grafana UI] --> H[Loki Datasource]
-
-    H --> I[Loki Query Frontend]
-
-    I --> J[Loki Querier]
-
-    J --> K[Ingester + MinIO Store]
-
-    K --> L[Logs Result]
 ```
 ```mermaid
 flowchart TD
